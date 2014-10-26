@@ -3,3 +3,6 @@
 The drawing challenge is a drawing contest website.
 
 Users can log in with their Facebook account.
+User can be an administrator
+Administrator should be able to create challenges
+Each week there is a single featured challenge
