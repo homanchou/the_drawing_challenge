@@ -3,6 +3,33 @@
 The drawing challenge is a drawing contest website.
 
 Users can log in with their Facebook account.
+
 User can be an administrator
+
 Administrator should be able to create challenges
-Each week there is a single featured challenge
+
+Make some kind of admin panel where administrator can create a challenge
+
+Challenge has title, start time, end time, description, embedded images
+
+Challenges can have participants
+
+The Challenge title, details etc are hidden until an artist participates (or the challenge is revealed for everyone)
+
+Everyone can see the avatars of the participants
+
+Artists can earn rewards or badges or points for consecutive participation
+
+Artists may be publicly shamed if they fail to submit
+
+Artists need a way to submit artwork for a challenge, allow for uploading iterations and declaring which iteration is the one you want to have voted on
+
+after challenge ends, each new user to the site will be prompted to vote for 3 days
+
+some moderation or flagging tools
+
+Each week there is a single featured challenge, pulled in by cron
+
+The site should be mobile responsive
+
+When artist submits artwork also posts to their facebook?  Or have the option to control.
