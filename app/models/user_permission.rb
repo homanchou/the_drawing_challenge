@@ -6,6 +6,7 @@ class UserPermission
 
   def set_admin!
     @user.role = 'admin'
+    @user.save!
   end
 
   def is_admin?
@@ -15,6 +16,7 @@ class UserPermission
 
   def unset_admin!
     @user.role = nil
+    @user.save!
   end
 
 end

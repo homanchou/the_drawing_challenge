@@ -2,6 +2,12 @@
 
 The drawing challenge is a drawing contest website.
 
+We are using the figaro gem to manage credentials.
+
+Copy config/application.yml.sample to config/applicaiton.yml to access the facebook dev app.
+
+
+
 Users can log in with their Facebook account.
 
 User can be an administrator
