@@ -17,5 +17,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  #has_and_belongs_to_many :challenges, through: :participations
+  has_many :participations
+  has_many :challenges, through: :participations
 
 end
