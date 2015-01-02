@@ -8,6 +8,15 @@ Rails.application.routes.draw do
     resources :challenges
   end
 
+   namespace :challenge do
+    resources :registrations, only: [:create, :new] do
+      collection do
+        get '/confirmation', to: 'registrations#confirmation'
+      end
+    end
+   end
+  # get '/register_for_challenge/:challenge_id', to:
+# get '/patients/:id', to: 'patients#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

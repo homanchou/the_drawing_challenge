@@ -1,2 +1,17 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<ul>
+  <li>
+    <% if @user_register_challenge.registered? %>
+    <h1><%= @current_challenge.title %></h1>
+    <% else %>
+    need to register to see title
+      <%= link_to('Register to see Challenge Subject', new_challenge_registration_path) %>
+    <% end %>
+
+  </li>
+  <% @ended_challenges.each do |challenge| %>
+    <li>
+      <h2><%= challenge.title %></h2>
+    </li>
+  <% end %>
+
+</ul>

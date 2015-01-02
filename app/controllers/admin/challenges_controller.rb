@@ -3,7 +3,7 @@ class Admin::ChallengesController < Admin::AdminController
 
 
   def index
-    @challenges = Challenge.all
+    @challenges = Challenge.order(start_at: :desc).page params[:page]
   end
 
   def show
