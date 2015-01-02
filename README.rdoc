@@ -2,6 +2,11 @@
 
 The drawing challenge is a drawing contest website.
 
-We are using the figaro gem to manage credentials.
+We are using the figaro gem to manage credentials locally which can be installed on heroku.
 
-Copy config/application.yml.sample to config/applicaiton.yml to access the facebook dev app.
+Copy config/application.yml.sample to config/application.yml to access the facebook dev app.
+
+Start local server with: foreman start and goto localhost:9292
+
+
+

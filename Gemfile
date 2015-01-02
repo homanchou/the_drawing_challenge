@@ -8,6 +8,7 @@ gem 'rails', '4.2.0'
 gem 'pg'
 gem 'foreman'
 gem 'puma'
+gem 'kaminari'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
