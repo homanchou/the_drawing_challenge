@@ -35,6 +35,7 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'nested_scaffold'
 end
 
 gem "twitter-bootstrap-rails"
