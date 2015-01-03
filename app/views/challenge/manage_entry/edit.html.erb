@@ -2,14 +2,16 @@
 
 <a href="" onclick="post_message()">Click to post</a>
 
-
 <script>
-
 var post_message = function(){
 
-  FB.login(function(){
-   // FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+  FB.login(function(response){
+    console.log('the response is', response);
+    FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+    console.log('done');
+    return false;
   }, {scope: 'publish_actions'});
+  return false;
 
 }
 
