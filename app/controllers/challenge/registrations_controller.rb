@@ -1,11 +1,11 @@
 class Challenge::RegistrationsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_current_challenge
+
   def new
-    @current_challenge = Challenge.current.first
   end
 
   def create
-    @current_challenge = Challenge.current.first
     UserRegisterChallenge.new(current_user, @current_challenge).register!
     redirect_to confirmation_challenge_registrations_path
   rescue => e
@@ -18,7 +18,12 @@ class Challenge::RegistrationsController < ApplicationController
       redirect_to root_path
       return false
     end
-    #confirm registration
+  end
+
+  private
+
+  def set_current_challenge
+    @current_challenge = Challenge.current.first
   end
 
 end

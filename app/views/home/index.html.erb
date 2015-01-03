@@ -1,17 +1,25 @@
-<ul>
-  <li>
-    <% if @user_register_challenge.registered? %>
-    <h1><%= @current_challenge.title %></h1>
-    <% else %>
-    need to register to see title
-      <%= link_to('Register to see Challenge Subject', new_challenge_registration_path) %>
-    <% end %>
 
-  </li>
-  <% @ended_challenges.each do |challenge| %>
-    <li>
-      <h2><%= challenge.title %></h2>
-    </li>
+  <% if @current_challenge %>
+
+    <section>
+      <% if @user_register_challenge.registered? %>
+        <h1><%= @current_challenge.title %></h1>
+          <% if @current_user.submitted_for_challenge?(@current_challenge) %>
+            Thanks for submitting.
+          <% else %>
+            <%= link_to('Submit your entry', challenge_manage_entry_edit_path, class: 'btn btn-success') %>
+          <% end %>
+        <% else %>
+        The current challenge is hidden until you register.
+        <%= link_to('Register to see Challenge Subject', new_challenge_registration_path, class: 'btn btn-success') %>
+      <% end %>
+    </section>
+
   <% end %>
 
-</ul>
+  <% @ended_challenges.each do |challenge| %>
+    <section>
+      <h2><%= challenge.title %></h2>
+    </section>
+  <% end %>
+

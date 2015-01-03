@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141123224354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "challenges", force: true do |t|
+  create_table "challenges", force: :cascade do |t|
     t.text     "title"
     t.datetime "start_at"
     t.datetime "end_at"
@@ -25,15 +25,20 @@ ActiveRecord::Schema.define(version: 20141123224354) do
     t.datetime "updated_at"
   end
 
-  create_table "participations", force: true do |t|
+  create_table "participations", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "challenge_id"
-    t.datetime "joined_at"
+    t.text     "title"
+    t.text     "description"
+    t.text     "image_url"
+    t.datetime "submitted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  add_index "participations", ["user_id", "challenge_id"], name: "index_participations_on_user_id_and_challenge_id", unique: true, using: :btree
+
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

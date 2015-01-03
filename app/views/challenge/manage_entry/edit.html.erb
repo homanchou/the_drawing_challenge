@@ -1,0 +1,16 @@
+<h1>Manage Challenge Entry</h1>
+
+<a href="" onclick="post_message()">Click to post</a>
+
+
+<script>
+
+var post_message = function(){
+
+  FB.login(function(){
+   // FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+  }, {scope: 'publish_actions'});
+
+}
+
+</script>

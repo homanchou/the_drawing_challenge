@@ -11,7 +11,7 @@ class Admin::ChallengesController < Admin::AdminController
   end
 
   def new
-    @challenge = Challenge.new
+    @challenge = Challenge.new(start_at: Time.now.beginning_of_day, end_at: Time.now.end_of_day)
   end
 
   def edit

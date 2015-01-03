@@ -12,8 +12,11 @@ Rails.application.routes.draw do
     resources :registrations, only: [:create, :new] do
       collection do
         get '/confirmation', to: 'registrations#confirmation'
+
       end
     end
+      get '/manage_entry/edit', to: 'manage_entry#edit'
+      patch '/manage_entry/update', to: 'manage_entry#update'
    end
   # get '/register_for_challenge/:challenge_id', to:
 # get '/patients/:id', to: 'patients#show'
