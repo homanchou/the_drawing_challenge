@@ -1,6 +1,7 @@
 class Challenge::ManageEntryController < ApplicationController
   before_action :authenticate_user!
   before_action :set_current_challenge
+  before_action :ensure_participation
 
   def edit
     graph = Koala::Facebook::API.new(current_user.oauth['credentials']['token'])
@@ -20,7 +21,12 @@ class Challenge::ManageEntryController < ApplicationController
   end
 
   def update
-
+    current_user.submit_for_challenge!(@current_challenge,
+      params[:participation][:title],
+      params[:participation][:description],
+      params[:participation][:image_url])
+    flash[:notice] = "Entry Updated"
+    redirect_to root_path
   end
 
   private
@@ -28,5 +34,15 @@ class Challenge::ManageEntryController < ApplicationController
   def set_current_challenge
     @current_challenge = Challenge.current.first
   end
+
+  def ensure_participation
+    @participation = current_user.find_participation(@current_challenge)
+    if @participation.nil?
+      flash[:error] = "You are not registered for the current challenge, did you submit too late?"
+      redirect_to root_path
+      return false
+    end
+  end
+
 
 end

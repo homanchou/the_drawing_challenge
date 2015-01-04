@@ -2,6 +2,8 @@
 
 <h1>Listing Admin Challenges</h1>
 
+<%= link_to 'New Challenge', new_admin_challenge_path, class:'btn btn-info' %>
+
 <table class="table">
   <thead>
     <tr>
@@ -31,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Challenge', new_admin_challenge_path %>
+<%= link_to('Manage Administrators', admin_users_path) %>

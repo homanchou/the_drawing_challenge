@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   namespace :admin do
+    resources :users
     resources :challenges
+    get '/', to: 'challenges#index'
   end
 
    namespace :challenge do

@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>email</th>
+      <th>name</th>
+      <th>role</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td><%= user.role %></td>
+        <td>
+          <% if UserPermission.new(user).is_admin? %>
+            <%= link_to 'Unset Admin' %>
+          <% else %>
+            <%= link_to 'Make Admin' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @users %>
+
+<br>
+
+<%= link_to('Manage Challenges', admin_challenges_path) %>

@@ -2,19 +2,24 @@
 
 <p>This image will be uploaded to your facebook photos and will appear on your timeline.</p>
 
-<!-- <form action="https://graph-video.facebook.com/me/photos" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="access_token" value="<%=current_user.oauth['credentials']['token']-%>">
-    <input type="text" name="title" placeholder="title"></br>
-    <input type="text" name="message" placeholder="message"></br>
+<div class="form_container">
+  <input id="source" type="file" name="file">
+  <% if @participation.image_url.present? %>
+    <%= image_tag(@participation.image_url) %>
+  <% end %>
 
-    <input type="text" name="description" placeholder="description"></br>
- -->    <input id="source" type="file" name="file"> <!-- name must be file -->
-    <!--<input type="text" name="no_story" value="true">-->
+<%= form_for(@participation, url: challenge_manage_entry_update_url) do |f| %>
+  <div>
+    <%= f.text_field :title, placeholder: 'Title' %>
+  </div>
+  <div>
+    <%= f.text_area :description, placeholder: 'Description' %>
+  </div>
+  <%= f.hidden_field :image_url %>
+<% end %>
 
-<button onclick="submit()">click me</button>
-
-
-
+<button onclick="submit()" id="submit_button" class="btn btn-success">Submit</button>
+</div>
 
 <script type="text/javascript">
 
@@ -43,12 +48,15 @@
 
   var submit = function() {
 
+    $('#submit_button').prop("disabled",true).after(' uploading...');
+
     var authToken = FB.getAccessToken();
 
     var fd = new FormData();
     fd.append("access_token",authToken);
     fd.append("source", blob);
-    fd.append("message","Photo Text");
+    fd.append("message",$('#participation_title').val());
+    fd.append("no_story", true);
 
     $.ajax({
       url:"https://graph.facebook.com/me/photos",
@@ -59,7 +67,10 @@
       cache:false,
       success:function(data){
         //get permalink using upload response id
-        FB.api(data.id, function(response) { console.log(response.source);});
+        FB.api(data.id, function(response) {
+          $('#participation_image_url').val(response.source);
+          $('.edit_participation').submit();
+        });
       },
       error:function(shr,status,data){
           console.log("error " + data + " Status " + shr.status);

@@ -9,4 +9,5 @@ class Admin::AdminController < ApplicationController
       return false
     end
   end
+
 end
