@@ -9,6 +9,7 @@ gem 'pg'
 gem 'foreman'
 gem 'puma'
 gem 'kaminari'
+gem 'koala'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets

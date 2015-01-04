@@ -37,6 +37,7 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
+    <div id="fb-root"></div>
 
     <script>
 
@@ -84,6 +85,7 @@
               <% if is_admin? %>
                 <li><%= link_to "Admin", admin_challenges_path %></li>
               <% end %>
+              <li><%= image_tag(current_user.avatar, title: current_user.name) %></li>
 
               <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
             <% else %>

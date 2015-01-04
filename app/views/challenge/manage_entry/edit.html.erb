@@ -1,18 +1,73 @@
 <h1>Manage Challenge Entry</h1>
 
-<a href="" onclick="post_message()">Click to post</a>
+<p>This image will be uploaded to your facebook photos and will appear on your timeline.</p>
 
-<script>
-var post_message = function(){
+<!-- <form action="https://graph-video.facebook.com/me/photos" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="access_token" value="<%=current_user.oauth['credentials']['token']-%>">
+    <input type="text" name="title" placeholder="title"></br>
+    <input type="text" name="message" placeholder="message"></br>
 
-  FB.login(function(response){
-    console.log('the response is', response);
-    FB.api('/me/feed', 'post', {message: 'Hello, world!'});
-    console.log('done');
-    return false;
-  }, {scope: 'publish_actions'});
-  return false;
+    <input type="text" name="description" placeholder="description"></br>
+ -->    <input id="source" type="file" name="file"> <!-- name must be file -->
+    <!--<input type="text" name="no_story" value="true">-->
 
-}
+<button onclick="submit()">click me</button>
+
+
+
+
+<script type="text/javascript">
+
+  var blob = '';
+
+
+  function dataURItoBlob(dataURI) {
+    var type = dataURI.split(':')[1].split(';')[0];
+    var byteString = atob(dataURI.split(',')[1]);
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: type });
+  }
+
+  $('#source').change(function() {
+    var fileList = this.files;
+    var file = fileList[0];
+    var r = new FileReader();
+    r.onload = function(){ blob = dataURItoBlob(r.result); };
+    r.readAsDataURL(file);
+   });
+
+
+  var submit = function() {
+
+    var authToken = FB.getAccessToken();
+
+    var fd = new FormData();
+    fd.append("access_token",authToken);
+    fd.append("source", blob);
+    fd.append("message","Photo Text");
+
+    $.ajax({
+      url:"https://graph.facebook.com/me/photos",
+      type:"POST",
+      data:fd,
+      processData:false,
+      contentType:false,
+      cache:false,
+      success:function(data){
+        //get permalink using upload response id
+        FB.api(data.id, function(response) { console.log(response.source);});
+      },
+      error:function(shr,status,data){
+          console.log("error " + data + " Status " + shr.status);
+      },
+      complete:function(){
+        console.log("Posted to facebook");
+      }
+    });
+  }; // end submit
 
 </script>
