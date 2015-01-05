@@ -7,7 +7,6 @@ class CreateParticipations < ActiveRecord::Migration
       t.text :description
       t.text :image_url
       t.datetime :submitted_at
-      t.datetime :published_at #broadcast to facebook feed
       t.timestamps
     end
     add_index :participations, [:user_id, :challenge_id], unique: true
