@@ -15,4 +15,8 @@ class Challenge < ActiveRecord::Base
     self.end_at <= Time.now
   end
 
+  def entries
+    participations.where.not(submitted_at:nil)
+  end
+
 end

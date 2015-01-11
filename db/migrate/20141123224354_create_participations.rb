@@ -8,6 +8,9 @@ class CreateParticipations < ActiveRecord::Migration
       t.text :image_url
       t.datetime :submitted_at
       t.timestamps
+      t.integer :wins, default: 0
+      t.integer :losses, default: 0
+      t.float :rank, default: 0.0
     end
     add_index :participations, [:user_id, :challenge_id], unique: true
   end

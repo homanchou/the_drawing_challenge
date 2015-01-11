@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 20141123224354) do
     t.datetime "submitted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "wins",         default: 0
+    t.integer  "losses",       default: 0
+    t.float    "rank",         default: 0.0
   end
 
   add_index "participations", ["user_id", "challenge_id"], name: "index_participations_on_user_id_and_challenge_id", unique: true, using: :btree

@@ -36,6 +36,7 @@ gem 'devise'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'image_suckr'
 end
 
 gem "twitter-bootstrap-rails"
