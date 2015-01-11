@@ -1,0 +1,37 @@
+<div class="row">
+
+  <% if @current_challenge %>
+
+    <div class="col-lg-3">
+      <% if @user_register_challenge.registered? %>
+        <h1><%= @current_challenge.title %></h1>
+      <% else %>
+        <h1>(Topic to be Revealed)</h1>
+      <% end %>
+      <%= @current_challenge.participations.count %> artists participating<br/>
+      <%= @current_challenge.entries.count %> artists submitted
+    </div>
+
+    <div class="col-lg-6">
+      Timer
+    </div>
+
+    <div class="col-lg-3">
+      <% if @user_register_challenge.registered? %>
+        <% if @current_user.submitted_for_challenge?(@current_challenge) %>
+            <!-- tanks for submitting? -->
+        <% else %>
+            <%= link_to('Submit your entry', challenge_manage_entry_edit_path, class: 'btn btn-success') %>
+         <% end %>
+      <% else %>
+        <%= link_to('Participate in Mystery Topic', new_challenge_registration_path, class:'btn btn-danger') %>
+      <% end %>
+
+    </div>
+
+
+  <% else %>
+     <div class="alert fade in alert-danger ">Uh oh!  Looks like Administration forgot to schedule a current challenge!</div>
+  <% end %>
+
+</div>

@@ -6,9 +6,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-    resources :challenges
+    resources :manage_challenges
     get '/', to: 'challenges#index'
   end
+
+  resource :challenges, only:[:index, :show]
+
 
   namespace :challenge do
     resources :registrations, only: [:create, :new] do
@@ -83,6 +86,6 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  root to: "home#index"
+  root to: "challenges#index"
 
 end

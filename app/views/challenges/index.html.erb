@@ -1,0 +1,5 @@
+<%= render :partial => 'current_challenge' %>
+<% @ended_challenges.each do |challenge| %>
+  <%= render :partial => 'past_challenge', :locals => {:challenge => challenge} %>
+<% end %>
+

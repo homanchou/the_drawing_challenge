@@ -1,4 +1,4 @@
-class Admin::ChallengesController < Admin::AdminController
+class Admin::ManageChallengesController < Admin::AdminController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
 
@@ -20,17 +20,17 @@ class Admin::ChallengesController < Admin::AdminController
   def create
     @challenge = Challenge.new(challenge_params)
     @challenge.save
-    redirect_to admin_challenges_path
+    redirect_to admin_manage_challenges_path
   end
 
   def update
     @challenge.update(challenge_params)
-    redirect_to admin_challenges_path
+    redirect_to admin_manage_challenges_path
   end
 
   def destroy
     @challenge.destroy
-    redirect_to admin_challenges_path
+    redirect_to admin_manage_challenges_path
   end
 
   private

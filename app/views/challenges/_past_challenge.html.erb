@@ -1,0 +1,17 @@
+<div class="row">
+
+  <div class="col-lg-3">
+    <h2><%= challenge.title %></h2>
+    <%= challenge.start_at.strftime('%m/%d/%Y') %> - <%= challenge.end_at.strftime('%m/%d/%Y') %><br/>
+    <%= challenge.entries.count %> Artists Participated
+  </div>
+
+
+  <% challenge.entries.order(rank: :desc).limit(3).each do |entry| %>
+    <div class="col-lg-3">
+      <%= image_tag(entry.image_url, style:'width:300px') %>
+    </div>
+  <% end %>
+
+
+</div>

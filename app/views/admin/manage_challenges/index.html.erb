@@ -2,7 +2,7 @@
 
 <h1>Listing Admin Challenges</h1>
 
-<%= link_to 'New Challenge', new_admin_challenge_path, class:'btn btn-info' %>
+<%= link_to 'New Challenge', new_admin_manage_challenge_path, class:'btn btn-info' %>
 
 <table class="table">
   <thead>
@@ -22,8 +22,8 @@
         <td><%= challenge.start_at %></td>
         <td><%= challenge.end_at %></td>
         <td><%= challenge.description %></td>
-        <td><%= link_to 'Edit', edit_admin_challenge_path(challenge) %></td>
-        <td><%= link_to 'Destroy', admin_challenge_path(challenge), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_admin_manage_challenge_path(challenge) %></td>
+        <td><%= link_to 'Destroy', admin_manage_challenge_path(challenge), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
