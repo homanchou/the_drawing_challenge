@@ -13,4 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require angular
+//= require the_drawing_challenge_app.js
+//= require timer
 //= require_tree .

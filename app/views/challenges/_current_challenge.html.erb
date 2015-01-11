@@ -13,7 +13,16 @@
     </div>
 
     <div class="col-lg-6">
-      Timer
+      <timer end-time="<%=@current_challenge.end_at.to_i * 1000-%>">
+        <span ng-hide="days === 0 && hours === 0 && minutes === 0 && seconds === 0">
+          <span ng-show="days > 0">{{days}} days,</span> {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds left
+        </span>
+
+        <span ng-show="days === 0 && hours === 0 && minutes === 0 && seconds === 0">
+          Times Up!  <%= link_to('Go Vote!', voting_path) %>
+        </span>
+
+      </timer>
     </div>
 
     <div class="col-lg-3">

@@ -14,6 +14,7 @@ gem 'koala'
 gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
+gem 'angularjs-rails'
 # Use CoffeeScript for .js.coffee assets and views
 #gem 'coffee-rails'
 
