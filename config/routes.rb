@@ -10,16 +10,22 @@ Rails.application.routes.draw do
     get '/', to: 'challenges#index'
   end
 
-   namespace :challenge do
+  namespace :challenge do
     resources :registrations, only: [:create, :new] do
       collection do
         get '/confirmation', to: 'registrations#confirmation'
 
       end
     end
-      get '/manage_entry/edit', to: 'manage_entry#edit'
-      patch '/manage_entry/update', to: 'manage_entry#update'
-   end
+    get '/manage_entry/edit', to: 'manage_entry#edit'
+    patch '/manage_entry/update', to: 'manage_entry#update'
+  end
+
+  #voting
+  get '/voting', to: 'voting#show'
+  post '/voting', to: 'voting#create'
+
+
   # get '/register_for_challenge/:challenge_id', to:
 # get '/patients/:id', to: 'patients#show'
 

@@ -9,9 +9,9 @@ class VotingService
     entries = @challenge.entries
     entries = entries.where.not(id: exclude_participant.id) if exclude_participant
     num_of_entries = entries.count
-    raise "Cannot produce random entry" if num_of_entries == 0
+    raise "Cannot produce random entry to vote on" if num_of_entries == 0
     offset = rand(num_of_entries)
-    return entries.first(:offset => offset)
+    return entries.offset(offset).limit(1).first
   end
 
   #get two random posts
@@ -21,7 +21,7 @@ class VotingService
     return left, right
   end
 
-#this is a utility function that returns a ranking score based on pos, neg votes
+  #this is a utility function that returns a ranking score based on pos, neg votes
   def ci_lower_bound(pos,neg)
     z= 1.96
     n = pos + neg
@@ -30,18 +30,21 @@ class VotingService
     return (phat + z*z/(2*n) - z * Math.sqrt((phat*(1-phat)+z*z/(4*n))/n))/(1+z*z/n)
   end
 
-#sets voting score for regular or battle votes
-#passing in :battle => true, if voting on battle
-#pass in :winner => 3, :loser => 5, the post_ids
-  def record_vote(winner, loser)
-    return false unless winner && loser
-    winner.wins += 1
-    loser.losses += 1
-    winner.rank = ci_lower_bound(winner.wins, winner.losses)
-    loser.rank = ci_lower_bound(winner.wins, winner.losses)
-    winner.save!
-    loser.save!
-    return true
+
+  def record_vote(voter, winner, loser)
+    Vote.transaction do
+      return false unless winner && loser
+      winner.wins += 1
+      loser.losses += 1
+      winner.rank = ci_lower_bound(winner.wins, winner.losses)
+      loser.rank = ci_lower_bound(winner.wins, winner.losses)
+      winner.save!
+      loser.save!
+      vote = voter.votes.where(challenge_id: winner.challenge_id).first_or_initialize
+      vote.voting_history << "#{winner.id} > #{loser.id}"
+      vote.save!
+      return true
+    end
   end
 
 end

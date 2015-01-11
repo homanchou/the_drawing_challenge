@@ -19,8 +19,6 @@
   <% end %>
 
   <% @ended_challenges.each do |challenge| %>
-    <section>
-      <h2><%= challenge.title %></h2>
-    </section>
+    <%= render :partial => 'past_challenge', :locals => {:challenge => challenge} %>
   <% end %>
 

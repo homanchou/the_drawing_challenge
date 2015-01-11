@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
 
   has_many :participations
   has_many :challenges, through: :participations
+  has_many :votes
 
   def find_participation(challenge)
     return nil if challenge.nil?

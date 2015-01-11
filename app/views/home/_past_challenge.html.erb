@@ -1,0 +1,12 @@
+<section>
+  <h2><%= challenge.title %></h2>
+  <%= challenge.start_at %> - <%= challenge.end_at %><br/>
+  <%= challenge.entries.count %> Artists Participated
+  <% challenge.entries.order(rank: :desc).limit(3).each do |entry| %>
+    <div>
+      <%= image_tag(entry.image_url, style:'width:300px') %>
+    </div>
+  <% end %>
+
+
+</section>

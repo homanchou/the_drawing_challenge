@@ -1,0 +1,9 @@
+
+<%= link_to(voting_path(ballot:Base64.encode64("#{@left.id},#{@right.id}")), method: :post) do %>
+  <%= image_tag @left.image_url, style:'width:300px' %>
+<% end %>
+
+
+<%= link_to(voting_path(ballot:Base64.encode64("#{@right.id},#{@left.id}")), method: :post) do %>
+  <%= image_tag @right.image_url, style:'width:300px'%>
+<% end %>
