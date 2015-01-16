@@ -15,7 +15,6 @@ class VotingController < ApplicationController
   end
 
   def create
-
     begin
       winner_id, loser_id = Base64.decode64(params[:ballot]).split(',')
       previous_challenge = Challenge.previous

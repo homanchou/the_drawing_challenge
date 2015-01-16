@@ -27,6 +27,7 @@
 
 
   function dataURItoBlob(dataURI) {
+
     var type = dataURI.split(':')[1].split(';')[0];
     var byteString = atob(dataURI.split(',')[1]);
     var ab = new ArrayBuffer(byteString.length);
@@ -36,6 +37,11 @@
     }
     return new Blob([ab], { type: type });
   }
+
+  $('#source').click( function(){ 
+    console.log("holaaa"); 
+    console.log(this.files);
+    });
 
   $('#source').change(function() {
     var fileList = this.files;
@@ -74,6 +80,7 @@
 
         //get permalink using upload response id
         FB.api(data.id, function(response) {
+          console.log(response.source);
           $('#participation_image_url').val(response.source);
           $('.edit_participation').submit();
         });

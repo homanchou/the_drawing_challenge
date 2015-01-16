@@ -1,46 +1,56 @@
-<div class="row">
+<div class="challenge">
+  <div class="row">
 
-  <% if @current_challenge %>
+    <% if @current_challenge %>
 
-    <div class="col-lg-3">
-      <% if @user_register_challenge.registered? %>
-        <h1><%= @current_challenge.title %></h1>
-      <% else %>
-        <h1>(Topic to be Revealed)</h1>
-      <% end %>
-      <%= @current_challenge.participations.count %> artists participating<br/>
-      <%= @current_challenge.entries.count %> artists submitted
-    </div>
-
-    <div class="col-lg-6">
-      <timer end-time="<%=@current_challenge.end_at.to_i * 1000-%>">
-        <span ng-hide="days === 0 && hours === 0 && minutes === 0 && seconds === 0">
-          <span ng-show="days > 0">{{days}} days,</span> {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds left
-        </span>
-
-        <span ng-show="days === 0 && hours === 0 && minutes === 0 && seconds === 0">
-          Times Up!  <%= link_to('Go Vote!', voting_path) %>
-        </span>
-
-      </timer>
-    </div>
-
-    <div class="col-lg-3">
-      <% if @user_register_challenge.registered? %>
-        <% if @current_user.submitted_for_challenge?(@current_challenge) %>
-            <!-- tanks for submitting? -->
+      <div class="col-lg-3">
+        <% if @user_register_challenge.registered? %>
+          Current challenge:
+          <h1><%= @current_challenge.title %></h1>
         <% else %>
-            <%= link_to('Submit your entry', challenge_manage_entry_edit_path, class: 'btn btn-success') %>
-         <% end %>
-      <% else %>
-        <%= link_to('Participate in Mystery Topic', new_challenge_registration_path, class:'btn btn-danger') %>
-      <% end %>
+          <h1>(Topic to be Revealed)</h1>
+        <% end %>
+        <%= @current_challenge.participations.count %> artists participating<br/>
+        <%= @current_challenge.entries.count %> artists submitted
+      </div>
 
-    </div>
+      <div class="col-lg-5">
+         <h4>Time left to submit:</h4>
+        <div class="countdown_timer text-center">
+          <timer end-time="<%=@current_challenge.end_at.to_i * 1000-%>">
+            <span ng-hide="days === 0 && hours === 0 && minutes === 0 && seconds === 0"></span>
+
+            <div class="row">
+              <div class="col-xs-3">{{days}} <br> <span>Days</span></div>
+              <div class="col-xs-3">{{hours}} <span>Hours</span></div>
+              <div class="col-xs-3"> {{minutes}} <span>Minutess</span></div>
+              <div class="col-xs-3">{{seconds}} <span>Seconds</span></div>
+            </div>
+
+            <span ng-show="days === 0 && hours === 0 && minutes === 0 && seconds === 0">
+              Times Up!  <%= link_to('Go Vote!', voting_path) %>
+            </span>  
+          </timer>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <% if @user_register_challenge.registered? %>
+          <% if @current_user.submitted_for_challenge?(@current_challenge) %>
+              <!-- tanks for submitting? -->
+          <% else %>
+              <%= link_to('Submit your entry', challenge_manage_entry_edit_path, class: 'btn btn-success') %>
+           <% end %>
+        <% else %>
+          <%= link_to('Participate in Mystery Topic', new_challenge_registration_path, class:'btn btn-danger') %>
+        <% end %>
+
+      </div>
 
 
-  <% else %>
-     <div class="alert fade in alert-danger ">Uh oh!  Looks like Administration forgot to schedule a current challenge!</div>
-  <% end %>
+    <% else %>
+       <div class="alert fade in alert-danger ">Uh oh!  Looks like Administration forgot to schedule a current challenge!</div>
+    <% end %>
 
+  </div>
 </div>

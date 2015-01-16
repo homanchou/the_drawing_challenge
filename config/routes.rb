@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+  Rails.application.routes.draw do
   get 'home/index'
 
 
@@ -10,8 +10,7 @@ Rails.application.routes.draw do
     get '/', to: 'challenges#index'
   end
 
-  resource :challenges, only:[:index, :show]
-
+  resources :challenges, only:[:index, :show]
 
   namespace :challenge do
     resources :registrations, only: [:create, :new] do
