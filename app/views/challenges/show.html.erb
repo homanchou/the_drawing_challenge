@@ -1,0 +1,44 @@
+<div class="challenge_header text-center">
+    <h1><%= @challenge.title.upcase %></h1>
+    <p><%= @challenge.start_at.strftime("%b %d, %Y") %> - <%= @challenge.end_at.strftime("%b %d, %Y") %></p>
+    <p><%= @participations.count %> participated</p>
+</div>
+
+<section class="challenge_participations">
+    <% if !@participations.empty? %>
+    <div class="row">
+        <% @participations.each do |participation| %>
+          <div class="participation_container">
+            <div class="col-xs-7 col-xs-offset-2 participation">
+                <div class="image-container">
+                    <img class="img-responsive" src=<%= participation.image_url %>>
+                </div>
+
+                <div class="info-container text-center">
+                    <header class="participation_title"><%= participation.title %></header>
+                    <span class="participation_description"><%= participation.description %></span>
+
+                   
+
+                    <div class="fb-comments hidden" data-href=<%="#{request.original_url}/participations/#{participation.id}"%> data-numposts="5" data-colorscheme="light"></div>
+
+                    <button class="btn btn-primary comment-btn">Leave a comment</button>
+                </div>
+
+            </div>
+
+            <div class="col-xs-3 participation_sidebar">
+                <p><strong>By: <%= participation.participant.name %></strong></p>
+
+                <p><%= time_ago_in_words(participation.submitted_at) %> ago</p>
+
+            </div>
+          </div>
+        <% end %>
+    </div>
+
+    <% else %>
+        <h1 class="text-center"> No one has participated in this challenge yet :(</h1>
+    <% end %>
+
+</section>
