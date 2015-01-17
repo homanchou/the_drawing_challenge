@@ -1,3 +1,5 @@
+
+<!--
 <div class="row">
 
   <div class="col-lg-3">
@@ -15,3 +17,39 @@
 
 
 </div>
+-->
+
+<h1 class="text-center">Past Challenges</h1>
+  <div class="challenge">
+      <div class="row individual_challenge">
+          <div class="col-lg-3">
+              <div class="challenge-details">
+                  <%= challenge.id %>
+                  <div class="challenge_subject">
+                      <h3><%= link_to challenge.title, challenge_path(challenge) %></h3>
+                  </div>
+                  <div class="challenge_date">
+                      <%= challenge.start_at.strftime("%b %d, %Y") %> - <%= challenge.end_at.strftime("%b %d, %Y") %>
+                  </div>
+                  <div class="participants_count">
+                      <%= challenge.participants.count %> artists participated
+                  </div>
+                  <div class="entries_count">
+                      <%= challenge.entries.count %> artists submitted
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-9">
+              <div class="row">
+                   <% challenge.entries.order(rank: :desc).limit(3).each do |participant| %>
+                      <div class="col-xs-4">
+                          <div class="valign_container">
+                              <img class="img-responsive challenge_image" src=<%= participant.image_url %>></img>
+                          </div>
+                      </div>
+                   <% end %>
+               </div>
+          </div>
+      </div>
+  </div>
