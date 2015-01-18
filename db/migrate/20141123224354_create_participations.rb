@@ -12,6 +12,6 @@ class CreateParticipations < ActiveRecord::Migration
       t.integer :losses, default: 0
       t.float :rank, default: 0.0
     end
-     ## add_index :participations, [:user_id, :challenge_id], unique: true
+     add_index :participations, [:user_id, :challenge_id], unique: true
   end
 end

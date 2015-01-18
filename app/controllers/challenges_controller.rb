@@ -6,7 +6,7 @@ class ChallengesController < ApplicationController
     @user_register_challenge = UserRegisterChallenge.new(current_user, @current_challenge)
 
     #list all challenges except current_challenge in reverse chronological order
-    @challenges = Challenge.where.not(id: @current_challenge).order("id desc")
+    #@challenges = Challenge.where.not(id: @current_challenge).order("id desc")
 
   end
 

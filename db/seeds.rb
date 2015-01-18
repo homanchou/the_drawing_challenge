@@ -17,6 +17,7 @@
       password: Devise.friendly_token[0,20],
       name: Devise.friendly_token[0,20],
       email: "#{Devise.friendly_token[0,5]}@thing.com")
+    puts "creating fake user"
   }
 
   #create some challenges
@@ -25,12 +26,18 @@
     Challenge.create!(title: title,
       start_at: index.days.from_now.beginning_of_day,
       end_at: (index +1).days.from_now.end_of_day)
+    puts "creating fake challenge #{title}"
   end
 
   #register users for all challenges
   User.find_each do |u|
     Challenge.find_each do |c|
-      u.participate!(c) rescue nil
+      begin
+        u.participate!(c)
+        puts "registering user #{u.email} to challenge #{c.title}"
+      rescue
+
+      end
     end
   end
 

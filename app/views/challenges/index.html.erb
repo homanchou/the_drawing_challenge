@@ -4,13 +4,8 @@
 
 <!-- make partial -->
 
-<% @challenges.each do |challenge| %>
-
-    <%= render :partial => 'individual_challenge', :locals => {:challenge => challenge } %>
-
-<% end %>
-
 
 <% @ended_challenges.each do |challenge| %>
-  <%= render :partial => 'past_challenge', :locals => {:challenge => challenge} %>
+  <%= render :partial => 'individual_challenge', :locals => {:challenge => challenge } %>
+
 <% end %>

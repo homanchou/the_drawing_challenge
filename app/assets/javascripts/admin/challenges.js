@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 
 
-
+/*
 $(document).ready(function(){
     $(".comment-btn").click(function(){
         $this = $(this);
@@ -19,4 +19,4 @@ $(document).ready(function(){
     }
 );
 
-
+*/
