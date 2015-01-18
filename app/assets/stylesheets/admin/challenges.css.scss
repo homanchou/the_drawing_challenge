@@ -15,7 +15,7 @@
 .individual_challenge {
     .valign_container {
         display: table-cell;
-        vertical-align: middle; 
+        vertical-align: middle;
         width: inherit;
         height: 200px;
         .challenge_image {
@@ -25,22 +25,7 @@
     }
 }
 
-/* --- end  --- */
 
-/* --- move to modules.css in the future --- */
-
-.countdown_timer {
-    font-size: 3.5em;
-    font-weight: 700;
-    h4 {
-        color: gray;
-    }
-    span {
-        font-size: 1.5rem;
-    }
-}
-
-/* --- end --- */
 
 /* --- challenge#show stylings --- */
 
@@ -51,7 +36,7 @@
 .participation {
     margin: auto;
     padding-bottom: 12em;
-    
+
     .image-container {
         margin-bottom: 3em;
         img {
@@ -61,6 +46,45 @@
             padding: 1em;
         }
     }
+}
+
+.voting {
+    .entry-img {
+       width:100%;
+    }
+}
+
+
+
+
+.countdown {text-align:center;margin-left:auto;}
+.countdown_amount {
+  font-size:7.5em;
+  font-weight:500;
+  line-height:1em;
+  color:#666;
+
+}
+/*.participants_count {
+  color:#888;
+  line-height:1em;
+  margin-top:1em;
+}
+.challenge_date {
+  color:#777;
+  line-height:1em;
+  margin-top:1em;
+}*/
+.countdown_label {
+  font-size:1.5em;
+}
+.countdown_section {
+  display:inline-block;
+  text-align:center;
+  padding:0 1em;
+}
+.hasCountdown {
+  color:#aaa;
 }
 
 /* --- end --- */

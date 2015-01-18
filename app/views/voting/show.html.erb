@@ -1,9 +1,20 @@
 
+<div class="row voting">
+
+<div class="col-xs-6 voting-left">
+
 <%= link_to(voting_path(ballot:Base64.encode64("#{@left.id},#{@right.id}")), method: :post) do %>
-  <%= image_tag @left.image_url, style:'width:300px' %>
+  <%= image_tag @left.image_url, class:'img-responsive entry-img'  %>
 <% end %>
+
+</div>
+<div class="col-xs-6 voting-right">
 
 
 <%= link_to(voting_path(ballot:Base64.encode64("#{@right.id},#{@left.id}")), method: :post) do %>
-  <%= image_tag @right.image_url, style:'width:300px'%>
+  <%= image_tag @right.image_url, class:'img-responsive entry-img' %>
 <% end %>
+
+</div>
+
+</div>
