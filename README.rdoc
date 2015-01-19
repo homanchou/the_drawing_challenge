@@ -6,7 +6,11 @@ We are using the figaro gem to manage credentials locally which can be installed
 
 Copy config/application.yml.sample to config/application.yml to access the facebook dev app.
 
-Start local server with: foreman start and goto localhost:9292
+The facebook credentials in the sample file are for a test app.  Hence you may have difficultly with some operations such as gathering more permissions for uploading a file to FB (since the app would have to be approved and it is not yet at this time)
+
+Start local server with: foreman start and goto localhost:5000
+
+
 
 
 
