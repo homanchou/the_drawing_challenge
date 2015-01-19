@@ -1,12 +1,18 @@
-<h1>Manage Challenge Entry</h1>
+  <% if @participation.image_url.present? %>
+    <h1>Revise Challenge Entry</h1>
+    <strong>You may replace this image before the challenge ends</strong><br/>
+    <%= image_tag(@participation.image_url, id: 'preview', style: 'width:200px') %>
+  <% else %>
+    <h1>Submit Challenge Entry</h1>
+  <% end %>
 
-<p>This image will be uploaded to your facebook photos and will appear on your timeline.</p>
+
+
+
 
 <div class="form_container">
   <input id="source" type="file" name="file">
-  <% if @participation.image_url.present? %>
-    <%= image_tag(@participation.image_url, id: 'preview', style:'max-width:600px') %>
-  <% end %>
+
 
 <%= form_for(@participation, url: challenge_manage_entry_update_url) do |f| %>
   <div>
@@ -16,14 +22,31 @@
     Description:</br> <%= f.text_area :description %>
   </div>
   <%= f.hidden_field :image_url %>
+  <span id="agreement_span" style="display:none">
+  <input type="checkbox" id="agreement" value="yes"> I acknowledge this image will be uploaded to my facebook timeline.
+  </span>
+  <br/>
+  <button <%='disabled' if @participation.image_url.blank? -%> id="revise_button" class="btn btn-info">Submit</button>
+
+
 <% end %>
 
-<button onclick="submit()" id="submit_button" class="btn btn-success">Submit</button>
+<button disabled onclick="submit()" id="submit_button" class="btn btn-success" style="display:none;">Submit</button>
+
+
 </div>
 
 <script type="text/javascript">
 
   var blob = '';
+
+  $('#agreement').change(function(){
+    if ($(this).is(":checked")) {
+      $(".btn").prop("disabled",false);
+    } else {
+      $(".btn").prop("disabled",true);
+    }
+  });
 
 
   function dataURItoBlob(dataURI) {
@@ -38,11 +61,6 @@
     return new Blob([ab], { type: type });
   }
 
-  $('#source').click( function(){ 
-    console.log("holaaa"); 
-    console.log(this.files);
-    });
-
   $('#source').change(function() {
     var fileList = this.files;
     var file = fileList[0];
@@ -52,6 +70,10 @@
       $('#preview').attr('src', e.target.result);
     };
     r.readAsDataURL(file);
+    //now you are not revising, you are uploading new
+    $('#revise_button').hide();
+    $('#submit_button').show();
+    $('#agreement_span').show();
    });
 
 
@@ -75,8 +97,6 @@
       contentType:false,
       cache:false,
       success:function(data){
-        console.log('this is what we get back from facebook after photo upload');
-        console.log(data);
 
         //get permalink using upload response id
         FB.api(data.id, function(response) {

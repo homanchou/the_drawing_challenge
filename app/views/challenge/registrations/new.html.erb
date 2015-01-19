@@ -1,5 +1,54 @@
-<h1>Register for Current Challenge</h1>
 
-<p>Before we show you the current challenge details, do you promise to submit an original work before <%= @current_challenge.end_at %>?</p>
 
+<div style="text-align:center">
+
+  <h1>Register for Current Challenge</h1>
+
+<br/>
+<p>Before we show you the current challenge details, do you promise to
+  submit an original work before <%= @current_challenge.end_at.strftime("%B %d") %> (<%= @current_challenge.end_at.strftime("%A") %>, end-of-day)?</p>
+
+
+<div class="countdown_timer text-center">
+
+
+
+
+          <timer end-time="<%=@current_challenge.end_at.to_i * 1000-%>">
+            <span ng-hide="days === 0 && hours === 0 && minutes === 0 && seconds === 0"></span>
+
+
+
+              <div class="countdown hasCountdown" id="defaultCountdown">
+
+                <span class="countdown_row">
+                  <span class="countdown_label">Time left to submit:</span>
+                  <br>
+                  <span ng-show="days > 0" class="countdown_section">
+                    <span class="countdown_amount">{{days}}</span>
+                    <br>Days
+                  </span>
+
+                  <span class="countdown_section"><span class="countdown_amount">{{hours}}</span><br>Hours</span>
+
+
+                  <span class="countdown_section"><span class="countdown_amount">{{minutes}}</span><br>Minutes</span>
+
+                  <span class="countdown_section"><span class="countdown_amount">{{seconds}}</span><br>Seconds</span>
+
+
+                </span>
+              </div>
+
+
+            <span ng-show="days === 0 && hours === 0 && minutes === 0 && seconds === 0">
+              Times Up!  <%= link_to('Go Vote!', voting_path) %>
+            </span>
+          </timer>
+</div>
+
+
+<br/>
 <%= link_to("Yes!  Let's do this!", challenge_registrations_path, method: :post, class: 'btn btn-success') %>
+
+</div>
