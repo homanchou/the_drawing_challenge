@@ -10,4 +10,7 @@ class Admin::AdminController < ApplicationController
     end
   end
 
+  def index
+  end
+
 end

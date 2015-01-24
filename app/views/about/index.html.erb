@@ -1,0 +1,27 @@
+<h1>About the Drawing Challenge</h1>
+
+<% if @pages.present? %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Topics</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= link_to(page.title, about_path(page)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @pages %>
+
+<% else %>
+
+Whoops, looks like Admin needs to fill in some topics.
+
+<% end %>

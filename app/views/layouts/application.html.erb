@@ -77,11 +77,12 @@
           <ul class="nav navbar-nav">
             <li <%= 'class=active' if controller_name == 'challenges' || request.path.include?('challenge') -%>><%= link_to "Challenges", "/" %></li>
             <li <%= 'class=active' if controller_name == 'voting' -%>><%= link_to "Voting", voting_path  %></li>
+            <li <%= 'class=active' if controller_name == 'about' -%>><%= link_to "About Us", about_index_path  %></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
               <% if is_admin? %>
-                <li><%= link_to "Admin", admin_manage_challenges_path %></li>
+                <li><%= link_to "Admin", admin_path %></li>
               <% end %>
               <li><%= image_tag(current_user.avatar, title: current_user.name) %></li>
 

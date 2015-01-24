@@ -1,4 +1,5 @@
   Rails.application.routes.draw do
+
   get 'home/index'
 
 
@@ -7,7 +8,8 @@
   namespace :admin do
     resources :users
     resources :manage_challenges
-    get '/', to: 'challenges#index'
+    resources :manage_pages
+    get '/', to: 'admin#index'
   end
 
   resources :challenges, only:[:index, :show]
@@ -26,6 +28,9 @@
   #voting
   get '/voting', to: 'voting#show'
   post '/voting', to: 'voting#create'
+
+  #static content
+  resources :about, only: [:index, :show]
 
 
   # get '/register_for_challenge/:challenge_id', to:
