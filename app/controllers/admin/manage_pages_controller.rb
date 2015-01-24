@@ -35,7 +35,7 @@ class Admin::ManagePagesController < Admin::AdminController
 
   private
     def set_page
-      @page = Page.find(params[:id])
+      @page = Page.find_by_slug(params[:id])
     end
 
     def page_params
