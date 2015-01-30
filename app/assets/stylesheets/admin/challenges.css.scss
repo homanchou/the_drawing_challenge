@@ -4,6 +4,7 @@
 
 /* --- challenges#index stylings --- */
 
+
 .challenge {
     padding: 40px;
     border-bottom: 1px dotted gray;
@@ -65,12 +66,22 @@
 
 .countdown {text-align:center;margin-left:auto;}
 .countdown_amount {
-  font-size:7.5em;
+  font-size: 7.5rem;
   font-weight:500;
   line-height:1em;
   color:#666;
-
 }
+
+@media(max-width: 380px) {
+  html {
+    font-size: 5px !important;
+  }
+  .countdown {
+    text-align: center;
+  }
+}
+
+
 /*.participants_count {
   color:#888;
   line-height:1em;
@@ -87,11 +98,25 @@
 .countdown_section {
   display:inline-block;
   text-align:center;
-  padding:0 1em;
+  padding:0 1rem;
 }
 .hasCountdown {
   color:#aaa;
 }
+
+
+@media(max-width: 766px) {
+  .countdown-info {
+    margin: 20px 0;
+  }
+  .current-challenge-info{
+    text-align: center;
+  }
+  .register-btn {
+    width: 100%;
+  }
+}
+
 
 /* --- end --- */
 
