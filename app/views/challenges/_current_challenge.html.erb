@@ -3,7 +3,7 @@
 
     <% if @current_challenge %>
 
-      <div class="col-xs-3">
+      <div class="col-sm-3 current-challenge-info">
         <% if @user_register_challenge.registered? %>
           Current challenge:
           <h1><%= @current_challenge.title %></h1>
@@ -14,7 +14,7 @@
         <%= @current_challenge.entries.count %> artists submitted
       </div>
 
-      <div class="col-xs-6">
+      <div class="col-sm-6 countdown-info">
         <div class="countdown_timer text-center">
           <timer end-time="<%=@current_challenge.end_at.to_i * 1000-%>">
             <span ng-hide="days === 0 && hours === 0 && minutes === 0 && seconds === 0"></span>
@@ -50,16 +50,16 @@
         </div>
       </div>
 
-      <div class="col-xs-3">
+      <div class="col-sm-3 register-info clearfix">
         <% if @user_register_challenge.registered? %>
           <% if @current_user.submitted_for_challenge?(@current_challenge) %>
               <!-- tanks for submitting? -->
-              <%= link_to('Your entry', challenge_manage_entry_edit_path, class: 'btn btn-info pull-right') %>
+              <%= link_to('Your entry', challenge_manage_entry_edit_path, class: 'register-btn btn btn-info pull-right') %>
           <% else %>
-              <%= link_to('Submit your entry', challenge_manage_entry_edit_path, class: 'btn btn-success pull-right') %>
+              <%= link_to('Submit your entry', challenge_manage_entry_edit_path, class: 'register-btn btn btn-success pull-right') %>
            <% end %>
         <% else %>
-          <%= link_to('Participate in Mystery Topic', new_challenge_registration_path, class:'btn btn-danger pull-right') %>
+          <%= link_to('Participate in Mystery Topic', new_challenge_registration_path, class:'register-btn btn btn-danger pull-right') %>
         <% end %>
 
       </div>

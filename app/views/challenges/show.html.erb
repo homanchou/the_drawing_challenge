@@ -29,8 +29,12 @@
             </div>
 
             <div class="col-xs-3 participation_sidebar">
-                <p><strong>By: <%= participation.participant.name %></strong></p>
-
+                <% if participation.participant.avatar %>
+                <div class="avatar-container">
+                    <img class="participant-avy img-circle" src=<%= participation.participant.avatar %> alt="Participant avatar">
+                </div>
+                <% end %>
+                <p><strong><%= participation.participant.name %></strong></p>
                 <p><%= time_ago_in_words(participation.submitted_at) %> ago</p>
 
             </div>
