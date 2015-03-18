@@ -6,7 +6,12 @@
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   namespace :admin do
-    resources :users
+    resources :users do
+      member do
+        put '/make_admin', to: 'users#make_admin'
+        put '/unset_admin', to: 'users#unset_admin'
+      end
+    end
     resources :manage_challenges
     resources :manage_pages
     get '/', to: 'admin#index'

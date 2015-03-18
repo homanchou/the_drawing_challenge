@@ -12,17 +12,17 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :slug %><br>
+    <%= f.label :slug %> (part of url)<br>
     <%= f.text_area :slug %>
   </div>
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_area :title %>
+    <%= f.text_area :title, style: 'width:800px' %>
   </div>
 
   <div class="field">
     <%= f.label :body %><br>
-    <%= f.text_area :body %>
+    <%= f.text_area :body, style: 'width:800px; height:400px' %>
   </div>
 

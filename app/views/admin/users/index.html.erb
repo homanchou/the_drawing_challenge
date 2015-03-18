@@ -18,11 +18,12 @@
         <td><%= user.email %></td>
         <td><%= user.name %></td>
         <td><%= user.role %></td>
+
         <td>
           <% if UserPermission.new(user).is_admin? %>
-            <%= link_to 'Unset Admin' %>
+            <%= link_to 'Unset Admin', unset_admin_admin_user_path(user), :method => :put %>
           <% else %>
-            <%= link_to 'Make Admin' %>
+            <%= link_to 'Make Admin', make_admin_admin_user_path(user), :method => :put %>
           <% end %>
         </td>
       </tr>
@@ -34,4 +35,3 @@
 
 <br>
 
-<%= link_to('Manage Challenges', admin_manage_challenges_path) %>
