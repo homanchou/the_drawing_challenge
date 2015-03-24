@@ -39,6 +39,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :production do
+  gem 'rails_serve_static_assets'
+end
+
 gem 'image_suckr'
 
 gem "twitter-bootstrap-rails"
