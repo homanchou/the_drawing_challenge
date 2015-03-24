@@ -113,6 +113,11 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
   src: url('/assets/glyphicons-halflings-regular.eot');
   src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+.navbar a.navbar-brand {
+  background: url(/assets/logo_header.png) no-repeat 10px 10px;
+  width:220px;
+  text-indent: -9999em;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
